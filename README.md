@@ -21,7 +21,7 @@ yarn add @kanalabs/kana-widget
 Here is an example of a basic app using Kana Widget:
 
 ```
-import KanaWidget from '@kanalabs/kana-widget';
+import { KanaWidget } from "@kanalabs/kana-widget";
 export const WidgetPage = () => {
   return (
     <KanaWidget/>
@@ -34,7 +34,7 @@ export const WidgetPage = () => {
 This is the example with all the available configurations:
 
 ```
-import KanaWidget from '@kanalabs/kana-widget';
+import { KanaWidget } from "@kanalabs/kana-widget";
 
 const widgetConfig: any = {
     containerStyle: {
