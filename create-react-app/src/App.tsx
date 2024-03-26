@@ -1,24 +1,31 @@
-import Widget from "@kanalabs/kana-widget";
+import { KanaWidget, Environment } from "@kanalabs/kana-widget";
 const SwapPage = () => {
   const NODEREAL_KEY = process.env.REACT_APP_NODEREAL_KEY;
-  const SDK_API_KEY = process.env.REACT_APP_SDK_API_KEY;
   const SOLANA_QUICKNODE_SWAP = process.env.REACT_APP_SOLANA_QUICKNODE_SWAP;
   const config = {
-    //sdk api key for integrator
+    // Specify the SDK API key here. This key is required for integrators to access SDK functionalities.
     apiKeys: {
-      sdkApiKey: SDK_API_KEY,
+      sdkApiKey: "YOUR_API_KEY_HERE", // Replace 'YOUR_API_KEY_HERE' with your actual SDK API key.
     },
+    // Default: if chain not provided, then all chains are considered
     chain: {
-      // set source chain to Solana and Aptos
-      sourceNetworkIds: [1, 2],
-      // set source chain to Solana
-      targetNetworkIds: [1],
+      // Set source network by specifying IDs:
+      // Solana - 1, Aptos - 2, Polygon - 3, BSC (Binance Smart Chain) - 4,
+      // Sui - 5, Ethereum - 6,
+      // zkSync - 9, Avalanche - 10, Arbitrum - 11
+      sourceNetworkIds: [6, 2], // Example: Ethereum and Aptos
+
+      // Set target network by specifying IDs:
+      // Solana - 1, Aptos - 2, Polygon - 3, BSC (Binance Smart Chain) - 4,
+      // Sui - 5, Ethereum - 6,
+      // zkSync - 9, Avalanche - 10, Arbitrum - 11
+      targetNetworkIds: [6, 2], // Example: Ethereum and Aptos
     },
-    //default production
+    // Set the SDK environment. By default, it is set to production.
     SDK: {
-      Environment: "test",
+      Environment: Environment.production,
     },
-    //default public rpc or integrator can provide ther rpc service
+    // Default: Used public RPC, or integrator can provide their own RPC service.
     Provider: {
       aptosProvider: `https://aptos-mainnet.nodereal.io/v1/${NODEREAL_KEY}/v1`,
       solanaProvider: `https://twilight-powerful-river.solana-mainnet.discover.quiknode.pro/${SOLANA_QUICKNODE_SWAP}`,
@@ -31,7 +38,7 @@ const SwapPage = () => {
       zkSyncProvider: `https://open-platform.nodereal.io/${NODEREAL_KEY}/zksync`,
       suiProvider: "https://sui-mainnet-rpc.nodereal.io",
     },
-    // visual customization
+    // Define visual customization for the container. Customize colors to fit the application's theme.
     containerStyle: {
       backgroundColor: "#1E1123",
       primaryColor: "#130E18",
@@ -39,7 +46,7 @@ const SwapPage = () => {
       buttonColor: "#00fbd0",
     },
   };
-  return <Widget config={config} />;
+  return <KanaWidget config={config} />;
 };
 
 export default SwapPage;
