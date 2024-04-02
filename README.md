@@ -1,4 +1,4 @@
-# kana-widget-example
+# Kana-Widget-Example
 
 ## Installation
 
