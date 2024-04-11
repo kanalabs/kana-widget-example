@@ -1,52 +1,63 @@
-import { KanaWidget, Environment } from "@kanalabs/kana-widget";
+import {
+  KanaWidget,
+  WidgetConfig,
+  Chain,
+  AptosDexsFilter,
+  BridgeOption,
+} from "@kanalabs/kana-widget";
 const SwapPage = () => {
   const NODEREAL_KEY = process.env.REACT_APP_NODEREAL_KEY;
   const SOLANA_QUICKNODE_SWAP = process.env.REACT_APP_SOLANA_QUICKNODE_SWAP;
-  const config = {
-    // Specify the SDK API key here. This key is required for integrators to access SDK functionalities.
-    apiKeys: {
-      sdkApiKey: "YOUR_API_KEY_HERE", // Replace 'YOUR_API_KEY_HERE' with your actual SDK API key.
-    },
-    // Default: if chain not provided, then all chains are considered
-    chain: {
-      // Set source network by specifying IDs:
-      // Solana - 1, Aptos - 2, Polygon - 3, BSC (Binance Smart Chain) - 4,
-      // Sui - 5, Ethereum - 6,
-      // zkSync - 9, Avalanche - 10, Arbitrum - 11
-      sourceNetworkIds: [6, 2], // Example: Ethereum and Aptos
+  const widgetConfig: WidgetConfig = {
+    // Required: The unique SDK key provided by the development team. This key is essential for the widget to function properly.
+    // If you haven't received a key yet, please contact the development team to obtain one.
+    sdkKey: "Your dApp/company SDK key",
 
-      // Set target network by specifying IDs:
-      // Solana - 1, Aptos - 2, Polygon - 3, BSC (Binance Smart Chain) - 4,
-      // Sui - 5, Ethereum - 6,
-      // zkSync - 9, Avalanche - 10, Arbitrum - 11
-      targetNetworkIds: [6, 2], // Example: Ethereum and Aptos
+    //Optional: The name of your dApp or company using this widget.
+    integrator: "Your dApp/company name",
+
+    //Optional: Configures the blockchain chains that will be used as source and target for transactions.
+    chains: {
+      sourceChain: [Chain.Aptos, Chain.Solana, Chain.Ethereum],
+      targetChain: [Chain.Aptos, Chain.Solana, Chain.Ethereum],
     },
-    // Set the SDK environment. By default, it is set to production.
-    SDK: {
-      Environment: Environment.production,
+
+    //Optional: Configuration for decentralized exchanges (DEXs) to be used within the widget,
+    // categorized by blockchain.
+    dexs: {
+      aptos: [AptosDexsFilter.Pontem], // List of DEXs to be used on the Aptos blockchain.
     },
-    // Default: Used public RPC, or integrator can provide their own RPC service.
+
+    //Optional: Configuration for bridges that are supported by the widget for cross-chain transactions.
+    bridges: [BridgeOption.CCTP, BridgeOption.Wormhole], // List of bridge options.
+
+    //Optional: Determines whether a guided tour or walkthrough is available for users of the widget.
+    // Set to 'false' to disable the tour.
+    tour: false,
+
+    // Optional: Configure custom blockchain network providers if you wish to use your own instead of default settings.
     Provider: {
       aptosProvider: `https://aptos-mainnet.nodereal.io/v1/${NODEREAL_KEY}/v1`,
-      solanaProvider: `https://twilight-powerful-river.solana-mainnet.discover.quiknode.pro/${SOLANA_QUICKNODE_SWAP}`,
+      solanaProvider: `https://greatest-frequent-owl.solana-mainnet.quiknode.pro/${SOLANA_QUICKNODE_SWAP}`,
       polygonProvider: `https://polygon-mainnet.nodereal.io/v1/${NODEREAL_KEY}`,
       binanceProvider: `https://bsc-mainnet.nodereal.io/v1/${NODEREAL_KEY}`,
       ethereumProvider: `https://eth-mainnet.nodereal.io/v1/${NODEREAL_KEY}`,
       arbitrumProvider: `https://open-platform.nodereal.io/${NODEREAL_KEY}/arbitrum-nitro/`,
-      avalancheProvider: `https://open-platform.nodereal.io/${NODEREAL_KEY}/avalanche-c/ext/bc/C/rpc`,
       baseProvider: `https://open-platform.nodereal.io/${NODEREAL_KEY}/base`,
+      avalancheProvider: `https://open-platform.nodereal.io/${NODEREAL_KEY}/avalanche-c/ext/bc/C/rpc`,
       zkSyncProvider: `https://open-platform.nodereal.io/${NODEREAL_KEY}/zksync`,
       suiProvider: "https://sui-mainnet-rpc.nodereal.io",
     },
-    // Define visual customization for the container. Customize colors to fit the application's theme.
+
+    //Optional: Styling options for the widget container and elements within it.
     containerStyle: {
-      backgroundColor: "#1E1123",
-      primaryColor: "#130E18",
-      secondaryColor: "#2c2533",
-      buttonColor: "#00fbd0",
+      backgroundColor: "#1E1123", // Background color of the widget container.
+      primaryColor: "#130E18", // Primary color theme for the widget.
+      secondaryColor: "#2c2533", // Secondary color theme for the widget.
+      buttonColor: "#00fbd0", // Color for buttons within the widget.
     },
   };
-  return <KanaWidget config={config} />;
+  return <KanaWidget config={widgetConfig} />;
 };
 
 export default SwapPage;

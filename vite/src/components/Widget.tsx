@@ -1,5 +1,3 @@
-"use client";
-
 import {
   AptosDexsFilter,
   BridgeOption,
@@ -15,7 +13,6 @@ const Widget = () => {
     sdkKey: "Your dApp/company SDK key",
     //Optional: The name of your dApp or company using this widget.
     integrator: "Your dApp/company name",
-
     //Optional: Configures the blockchain chains that will be used as source and target for transactions.
     chains: {
       sourceChain: [Chain.Aptos, Chain.Solana, Chain.Ethereum],
@@ -36,15 +33,33 @@ const Widget = () => {
 
     // Optional: Configure custom blockchain network providers if you wish to use your own instead of default settings.
     Provider: {
-      aptosProvider: `https://aptos-mainnet.nodereal.io/v1/${process.env.NEXT_PUBLIC_NODEREAL_KEY}/v1`,
-      solanaProvider: `https://twilight-powerful-river.solana-mainnet.discover.quiknode.pro/${process.env.NEXT_PUBLIC_SOLANA_QUICKNODE_SWAP}`,
-      polygonProvider: `https://polygon-mainnet.nodereal.io/v1/${process.env.NEXT_PUBLIC_NODEREAL_KEY}`,
-      binanceProvider: `https://bsc-mainnet.nodereal.io/v1/${process.env.NEXT_PUBLIC_NODEREAL_KEY}`,
-      ethereumProvider: `https://eth-mainnet.nodereal.io/v1/${process.env.NEXT_PUBLIC_NODEREAL_KEY}`,
-      arbitrumProvider: `https://open-platform.nodereal.io/${process.env.NEXT_PUBLIC_NODEREAL_KEY}/arbitrum-nitro/`,
-      avalancheProvider: `https://open-platform.nodereal.io/${process.env.NEXT_PUBLIC_NODEREAL_KEY}/avalanche-c/ext/bc/C/rpc`,
-      baseProvider: `https://open-platform.nodereal.io/${process.env.NEXT_PUBLIC_NODEREAL_KEY}/base`,
-      zkSyncProvider: `https://open-platform.nodereal.io/${process.env.NEXT_PUBLIC_NODEREAL_KEY}/zksync`,
+      aptosProvider: `https://aptos-mainnet.nodereal.io/v1/${
+        import.meta.env.VITE_NODEREAL_KEY
+      }/v1`,
+      solanaProvider: `https://twilight-powerful-river.solana-mainnet.discover.quiknode.pro/${
+        import.meta.env.VITE_SOLANA_QUICKNODE_SWAP
+      }`,
+      polygonProvider: `https://polygon-mainnet.nodereal.io/v1/${
+        import.meta.env.VITE_NODEREAL_KEY
+      }`,
+      binanceProvider: `https://bsc-mainnet.nodereal.io/v1/${
+        import.meta.env.VITE_NODEREAL_KEY
+      }`,
+      ethereumProvider: `https://eth-mainnet.nodereal.io/v1/${
+        import.meta.env.VITE_NODEREAL_KEY
+      }`,
+      arbitrumProvider: `https://open-platform.nodereal.io/${
+        import.meta.env.VITE_NODEREAL_KEY
+      }/arbitrum-nitro/`,
+      avalancheProvider: `https://open-platform.nodereal.io/${
+        import.meta.env.VITE_NODEREAL_KEY
+      }/avalanche-c/ext/bc/C/rpc`,
+      baseProvider: `https://open-platform.nodereal.io/${
+        import.meta.env.VITE_NODEREAL_KEY
+      }/base`,
+      zkSyncProvider: `https://open-platform.nodereal.io/${
+        import.meta.env.VITE_NODEREAL_KEY
+      }/zksync`,
       suiProvider: "https://sui-mainnet-rpc.nodereal.io",
     },
     //Optional: Styling options for the widget container and elements within it.
