@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@injectivelabs/token-metadata": "^1.14.5",
-    "@kanalabs/kana-widget": "^0.1.1",
+    "@kanalabs/kana-widget": "0.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
