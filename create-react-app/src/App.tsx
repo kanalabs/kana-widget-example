@@ -1,13 +1,17 @@
 import {
   KanaWidget,
   WidgetConfig,
-  Chain,
-  AptosDexsFilter,
-  BridgeOption,
-} from "@kanalabs/kana-widget";
+  // Chain,
+  // AptosDexsFilter,
+  // BridgeOption,
+} from "@kanalabs/kana-widget-v2";
 const SwapPage = () => {
   const NODEREAL_KEY = process.env.REACT_APP_NODEREAL_KEY;
   const SOLANA_QUICKNODE_SWAP = process.env.REACT_APP_SOLANA_QUICKNODE_SWAP;
+  const PAYMASTER_KEY = process.env.REACT_APP_PAYMASTER_KEY;
+  const PAYMASTER_URL = process.env.REACT_APP_BASE_URL;
+  const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
   const widgetConfig: WidgetConfig = {
     // Required: The unique SDK key provided by the development team. This key is essential for the widget to function properly.
     // If you haven't received a key yet, please contact the development team to obtain one.
@@ -17,19 +21,19 @@ const SwapPage = () => {
     integrator: "Your dApp/company name",
 
     //Optional: Configures the blockchain chains that will be used as source and target for transactions.
-    chains: {
-      sourceChain: [Chain.Aptos, Chain.Solana, Chain.Ethereum],
-      targetChain: [Chain.Aptos, Chain.Solana, Chain.Ethereum],
-    },
+    // chains: {
+    //   sourceChain: [Chain.Aptos, Chain.Solana, Chain.Ethereum],
+    //   targetChain: [Chain.Aptos, Chain.Solana, Chain.Ethereum],
+    // },
 
     //Optional: Configuration for decentralized exchanges (DEXs) to be used within the widget,
     // categorized by blockchain.
-    dexs: {
-      aptos: [AptosDexsFilter.Pontem], // List of DEXs to be used on the Aptos blockchain.
-    },
+    // dexs: {
+    //   aptos: [AptosDexsFilter.Pontem], // List of DEXs to be used on the Aptos blockchain.
+    // },
 
     //Optional: Configuration for bridges that are supported by the widget for cross-chain transactions.
-    bridges: [BridgeOption.CCTP, BridgeOption.Wormhole], // List of bridge options.
+    // bridges: [BridgeOption.CCTP, BridgeOption.Wormhole], // List of bridge options.
 
     //Optional: Determines whether a guided tour or walkthrough is available for users of the widget.
     // Set to 'false' to disable the tour.
@@ -48,16 +52,18 @@ const SwapPage = () => {
       zkSyncProvider: `https://open-platform.nodereal.io/${NODEREAL_KEY}/zksync`,
       suiProvider: "https://sui-mainnet-rpc.nodereal.io",
     },
-
-    //Optional: Styling options for the widget container and elements within it.
-    containerStyle: {
-      backgroundColor: "#1E1123", // Background color of the widget container.
-      primaryColor: "#130E18", // Primary color theme for the widget.
-      secondaryColor: "#2c2533", // Secondary color theme for the widget.
-      buttonColor: "#00fbd0", // Color for buttons within the widget.
-    },
+    paymasterApikey: PAYMASTER_KEY!,
+    paymasterUrl: PAYMASTER_URL!,
+    isPaymaster: true,
+    googleClientId: GOOGLE_CLIENT_ID,
   };
-  return <KanaWidget config={widgetConfig} />;
+  return (
+    <div className="flex h-full p-4">
+      <div className="w-full flex justify-center items-center">
+        <KanaWidget config={widgetConfig} />
+      </div>
+    </div>
+  );
 };
 
 export default SwapPage;
