@@ -4,7 +4,7 @@ import {
   Chain,
   KanaWidget,
   WidgetConfig,
-} from "@kanalabs/kana-widget";
+} from "@kanalabs/kana-widget-v2";
 
 const Widget = () => {
   const widgetConfig: WidgetConfig = {
