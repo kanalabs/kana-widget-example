@@ -1,3 +1,4 @@
+import { NetworkId } from "@kanalabs/aggregator";
 import {
   KanaWidget,
   WidgetConfig,
@@ -6,6 +7,7 @@ import {
   // BridgeOption,
 } from "@kanalabs/kana-widget-v2";
 const SwapPage = () => {
+  console.log(NetworkId.Arbitrum)
   const NODEREAL_KEY = process.env.REACT_APP_NODEREAL_KEY;
   const SOLANA_QUICKNODE_SWAP = process.env.REACT_APP_SOLANA_QUICKNODE_SWAP;
   const PAYMASTER_KEY = process.env.REACT_APP_PAYMASTER_KEY;
@@ -53,8 +55,6 @@ const SwapPage = () => {
       suiProvider: "https://sui-mainnet-rpc.nodereal.io",
     },
     paymasterApikey: PAYMASTER_KEY!,
-    paymasterUrl: PAYMASTER_URL!,
-    isPaymaster: true,
     googleClientId: GOOGLE_CLIENT_ID,
   };
   return (
