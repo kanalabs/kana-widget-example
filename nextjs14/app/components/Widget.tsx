@@ -1,14 +1,15 @@
 "use client";
 
+import { NetworkId } from "@kanalabs/aggregator";
 import {
-  AptosDexsFilter,
   BridgeOption,
   Chain,
   KanaWidget,
   WidgetConfig,
-} from "@kanalabs/kana-widget";
+} from "@kanalabs/kana-widget-v2";
 
 const Widget = () => {
+  console.log(NetworkId.Arbitrum)
   const widgetConfig: WidgetConfig = {
     // Required: The unique SDK key provided by the development team. This key is essential for the widget to function properly.
     // If you haven't received a key yet, please contact the development team to obtain one.
@@ -20,11 +21,6 @@ const Widget = () => {
     chains: {
       sourceChain: [Chain.Aptos, Chain.Solana, Chain.Ethereum],
       targetChain: [Chain.Aptos, Chain.Solana, Chain.Ethereum],
-    },
-    //Optional: Configuration for decentralized exchanges (DEXs) to be used within the widget,
-    // categorized by blockchain.
-    dexs: {
-      aptos: [AptosDexsFilter.Pontem], // List of DEXs to be used on the Aptos blockchain.
     },
 
     //Optional: Configuration for bridges that are supported by the widget for cross-chain transactions.
